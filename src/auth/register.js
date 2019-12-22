@@ -78,6 +78,13 @@ const Register = () => {
                     className="form-control"
                 />
             </div>
+            <div className="form-group">
+                <label className="text-muted">Confirm Password</label>
+                <input
+                    type="password"
+                    className="form-control"
+                />
+            </div>
 
             <div>
                 <button className="btn btn-primary" onClick={clickSubmit}>
@@ -96,8 +103,10 @@ const Register = () => {
                 <h1>Register</h1>
                 {registerForm()}
                 <br/>
-                <Link to="/auth/password/forgot" className="btn btn-sm btn-outline-danger">
-                    Forgot Password
+                이미 가입되어 있다면?
+                
+                <Link to="/login" className="btn btn-sm btn-outline-danger">
+                    로그인하기
                 </Link>
             </div>
         </Layout>

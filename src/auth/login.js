@@ -4,6 +4,7 @@ import Layout from "../core/Layout";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
+import styled from "styled-components"
 
 
 
@@ -67,13 +68,44 @@ const Login = () => {
                     className="form-control"
                 />
             </div>
-
+            <div>
+                <div>
+                    <div>
+                        <input type="checkbox" aria-label="Checkbox for following text input" />자동으로 로그인하기
+                        <br/>??
+                    </div>
+                </div>
+            </div>
+           
             <div>
                 <button className="btn btn-primary" onClick={clickSubmit}>
                     {buttonText}
                 </button>
             </div>
+            <span>소셜로그인</span>
+            <div>
+                <button className="d-flex justify-content-end social_icon">
+                    <span><i className="fab fa-facebook-square"></i></span>
+                </button>
+            </div>
+            <div>
+                <button className="d-flex justify-content-end social_icon">
+                    <span><i className="fab fa-twitter-square"></i></span>
+                </button>
+            </div>
+            <div>
+                <button className="d-flex justify-content-end social_icon">
+                    <span><i className="fab fa-google-plus-square"></i></span>
+                </button>
+            </div>
+            <div>
+                <button className="d-flex justify-content-end social_icon">
+                    <span><i className="fab fa-naver-square"></i></span>
+                </button>
+            </div>
+            
         </form>
+        
 
 
     );
@@ -84,10 +116,16 @@ const Login = () => {
                 <ToastContainer />
                 <h1>LOGIN</h1>
                 {loginForm()}
+                <br />  
+                    회원가입이 되어있지 않다면?
+                        <Link to="/register" className="btn btn-sm btn-outline-danger">
+                            가입하기
+                        </Link>
                 <br />
-                <Link to="/auth/password/forgot" className="btn btn-sm btn-outline-danger">
-                    Forgot Password
-                </Link>
+                    비밀번호가 생각나지 않으면?
+                        <Link to="/forgot" className="btn btn-sm btn-outline-danger">
+                            회원정보찾기
+                        </Link>
             </div>
         </Layout>
     )
