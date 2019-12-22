@@ -12,17 +12,41 @@ const Activate = ({match}) => {
         token: '',
         show: true
     });
+    
+    useEffect(() => {
+        let token = match.params.token;
+
+        let { name } = jwt.decode(token);
+        console.log(token);
+        if(token){
+            setValues({...values, name, token});
+        }
+    }, []);
+
+    const {name, token, show} = values;
 
     const clickSubmit = event => {
         event.preventDefault();
-        console.log(
-            "회원가입이 잘 되었다."           
-        )
+
+        axios({
+            method: 'POST',
+            url: "http://localhost:5000/user/account-activation",
+            data: { token }
+        })
+            .then(response => {
+                console.log('ACCOUNT ACTIVATION', response);
+                setValues({ ...values, show: false });
+                toast.success(response.data.message);
+            })
+            .catch(error => {
+                console.log('ACCOUNT ACTIVATION ERROR', error.response.data.error);
+                toast.error(error.response.data.error);
+            });
     };
     
     const activateLink = () => (
         <div className="text-center">
-            <h1 className="p-5">Hey ???, Ready to activate your account?</h1>
+            <h1 className="p-5">Hey {name}, Ready to activate your account?</h1>
             <button className="btn btn-outline-primary" onClick={clickSubmit}>
                 Activate Account
             </button>
