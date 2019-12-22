@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link, Redirect} from "react-router-dom";
 import Layout from "../core/Layout";
 import axios from "axios";
+import {authenticate, isAuth} from "./helper";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -100,6 +101,7 @@ const Register = () => {
         <Layout>
             <div className = "col-md-6 offset-md-3">
                 <ToastContainer />
+                {isAuth() ? <Redirect to="/" />: null}
                 <h1>Register</h1>
                 {registerForm()}
                 <br/>
