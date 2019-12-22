@@ -1,14 +1,16 @@
 import React from 'react';
+import Layout from './core/Layout';
 
 
 function App() {
   return (
-    <div className="App">
+    <Layout>
+      
       <h1>
         Passme
       </h1>
 
-    </div>
+    </Layout>
   );
 }
 

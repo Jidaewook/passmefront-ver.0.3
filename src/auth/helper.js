@@ -63,3 +63,9 @@ export const isAuth = () => {
         }
     }
 };
+
+export const logout = next => {
+    removeCookie('token');
+    removeLocalStorage('user');
+    next();
+};
