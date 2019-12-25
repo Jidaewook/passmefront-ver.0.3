@@ -41,7 +41,7 @@ const Login = ({history}) => {
                     setValues({...values, name: '', email: '', password: '', button: 'Submitted'});
                     toast.success(response.data.message);
                     console.log("enter");
-                    history.push('/private');
+                    isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private');
                 })
                 
             })
