@@ -26,7 +26,7 @@ const Login = () => {
     const clickSubmit = event => {
         event.preventDefault();
 
-        console.log(setValues);
+        console.log("Values are... ", values);
 
         setValues({ ...values, buttonText: 'Submitting' });
 

@@ -14,22 +14,24 @@ const Forgot = () => {
 
     const {email, buttonText} = values;
 
+    // 여기서의 name은 위에서 설정된 밸류(키밸류)를 지칭하는 개념.
     const handleChange = name => event => {
 
-        //들어온 값으로 name이라는 '밸류항목값(name, email, password..)'으로 받는다. 
+        //들어온 값으로 name이라는 '밸류항목값(name, email, password..)'으로 받는다. 초기값을 뿌려주고 바뀐(체인지된) 값을 name항목에 넣어준다.
         setValues({ ...values, [name]: event.target.value });
     };
 
     const clickSubmit = event => {
         event.preventDefault();
 
-        console.log(setValues);
+        // 클릭된 대상을 보여준다.
+        console.log("setValue is... ", values);
 
         setValues({ ...values, buttonText: 'Submitting' });
 
         axios({
-            method: 'POST',
-            url: "http://localhost:5000/user/login",
+            method: 'PUT',
+            url: "http://localhost:5000/user/forgot",
             data: { email }
         })
             .then(response => {
@@ -49,6 +51,7 @@ const Forgot = () => {
             <div className="form-group">
                 <label className="text-muted">E-mail</label>
                 <input
+                // onChange가 html에서 있어야, 레이블이 타이핑가능하다.
                     onChange={handleChange('email')}
                     value={email}
                     type="email"
@@ -67,6 +70,7 @@ const Forgot = () => {
 
 
     );
+// return 은 화면에 보여지는 부분
 
     return (
         <Layout>
@@ -77,12 +81,12 @@ const Forgot = () => {
                 <br />
                 회원가입이 되어있지 않다면?
                         <Link to="/register" className="btn btn-sm btn-outline-danger">
-                    가입하기
+                            가입하기
                         </Link>
                 <br />
                 비밀번호가 생각난다면?
                         <Link to="/login" className="btn btn-sm btn-outline-danger">
-                    로그인하기
+                            로그인하기
                         </Link>
             </div>
         </Layout>
