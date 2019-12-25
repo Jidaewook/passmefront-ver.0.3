@@ -9,7 +9,7 @@ import styled from "styled-components"
 
 
 
-const Login = () => {
+const Login = ({history}) => {
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -40,6 +40,8 @@ const Login = () => {
                 authenticate(response, () => {
                     setValues({...values, name: '', email: '', password: '', button: 'Submitted'});
                     toast.success(response.data.message);
+                    console.log("enter");
+                    history.push('/private');
                 })
                 
             })
