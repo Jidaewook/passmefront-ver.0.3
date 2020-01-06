@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import styled from "styled-components"
 import Google from './google';
-
+import Facebook from './facebook';
 
 
 
@@ -99,11 +99,6 @@ const Login = ({history}) => {
             <span>소셜로그인</span>
             <div>
                 <button className="d-flex justify-content-end social_icon">
-                    <span><i className="fab fa-facebook-square"></i></span>
-                </button>
-            </div>
-            <div>
-                <button className="d-flex justify-content-end social_icon">
                     <span><i className="fab fa-twitter-square"></i></span>
                 </button>
             </div>
@@ -128,6 +123,7 @@ const Login = ({history}) => {
                 <h1>LOGIN</h1>
                 {loginForm()}
                 <Google informParent={informParent}/>
+                <Facebook informParent={informParent}/>
                 <br />  
                     회원가입이 되어있지 않다면?
                         <Link to="/register" className="btn btn-sm btn-outline-danger">
