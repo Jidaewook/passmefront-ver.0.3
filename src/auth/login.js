@@ -8,7 +8,8 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import styled from "styled-components"
 import Google from './google';
 import Facebook from './facebook';
-import Naver from './Naver';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+// import Naver from './Naver';
 
 
 const Login = ({history}) => {
@@ -62,16 +63,16 @@ const Login = ({history}) => {
 
 
     const loginForm = () => (
-        <form>
-            <div className="form-group">
-                <label className="text-muted">E-mail</label>
-                <input
+        <Form>
+            <FormGroup>
+                <Label className="text-muted">E-mail</Label>
+                <Input
                     onChange={handleChange('email')}
                     value={email}
                     type="email"
-                    className="form-control"
+                    
                 />
-            </div>
+            </FormGroup>
 
             <div className="form-group">
                 <label className="text-muted">Password</label>
@@ -109,7 +110,7 @@ const Login = ({history}) => {
                 </button>
             </div>
             
-        </form>
+        </Form>
         
 
 
@@ -124,7 +125,7 @@ const Login = ({history}) => {
                 {loginForm()}
                 <Google informParent={informParent}/>
                 <Facebook informParent={informParent}/>
-                <Naver informParent={informParent}/>
+                {/* <Naver informParent={informParent}/> */}
                 <br />  
                     회원가입이 되어있지 않다면?
                         <Link to="/register" className="btn btn-sm btn-outline-danger">
