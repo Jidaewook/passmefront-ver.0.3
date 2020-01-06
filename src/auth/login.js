@@ -6,6 +6,8 @@ import {authenticate, isAuth} from './helper';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import styled from "styled-components"
+import Google from './google';
+
 
 
 
@@ -16,6 +18,12 @@ const Login = ({history}) => {
         buttonText: 'submit'
     });
     const { email, password, buttonText } = values;
+
+    const informParent = response => {
+        authenticate(response, () => {
+            isAuth() && isAuth.role === 'admin' ? history.push('/admin') : history.push('/private');
+        });
+    };
 
     const handleChange = name => event => {
 
@@ -99,11 +107,7 @@ const Login = ({history}) => {
                     <span><i className="fab fa-twitter-square"></i></span>
                 </button>
             </div>
-            <div>
-                <button className="d-flex justify-content-end social_icon">
-                    <span><i className="fab fa-google-plus-square"></i></span>
-                </button>
-            </div>
+
             <div>
                 <button className="d-flex justify-content-end social_icon">
                     <span><i className="fab fa-naver-square"></i></span>
@@ -123,6 +127,7 @@ const Login = ({history}) => {
                 {isAuth() ? <Redirect to ="/" />: null}
                 <h1>LOGIN</h1>
                 {loginForm()}
+                <Google informParent={informParent}/>
                 <br />  
                     회원가입이 되어있지 않다면?
                         <Link to="/register" className="btn btn-sm btn-outline-danger">

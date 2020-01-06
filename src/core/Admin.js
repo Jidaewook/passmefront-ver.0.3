@@ -6,6 +6,8 @@ import {logout, isAuth, getCookie, updateUser} from '../auth/helper';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+
+
 const Admin = ({history}) => {
     const [values, setValues]= useState({
         role: '',
@@ -15,6 +17,8 @@ const Admin = ({history}) => {
         buttonText: 'Submit'
     });
 
+    const { role, name, email, password, buttonText } = values;
+
     const token = getCookie('token');
 
     useEffect(() => {
@@ -22,10 +26,28 @@ const Admin = ({history}) => {
     }, []);
 
     const loadProfile = () => {
-
+        axios({
+            method: 'GET',
+            url: `http://localhost:5000/user/${isAuth()._id}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then(response => {
+                console.log('Admin Profile update', response);
+                const {role, name, email} = response.data;
+                setValues({ ...values, role, name, email});
+            })
+            .catch(error => {
+                console.log('Admin Profile Update Error', error);
+                if(error.response.status === 401) {
+                    logout(() => {
+                        history.push('/');
+                    });
+                }
+            });
     };
 
-    const {role, name, email, password, buttonText} = values;
 
     const clickSubmit = event => {
         
@@ -47,6 +69,7 @@ const Admin = ({history}) => {
                     
             </div>
             <div className="form-group">
+                <p>이름 입력</p>
                 <input
                     onChange={handleChange('name')}
                     value={name}
@@ -55,6 +78,7 @@ const Admin = ({history}) => {
                 />
             </div>
             <div className="form-group">
+                <p>이메일 입력</p>
                 <input
                     onChange={handleChange('email')}
                     value={email}
@@ -63,6 +87,7 @@ const Admin = ({history}) => {
                 />
             </div>
             <div className="form-group">
+                <p>패스워드 입력</p>
                 <input
                     onChange={handleChange('password')}
                     value={password}
