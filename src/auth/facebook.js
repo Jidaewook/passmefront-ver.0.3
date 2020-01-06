@@ -33,6 +33,9 @@ const Facebook = ({informParent = f => f}) => {
                         <i className="fab fa-facebook pr-2"></i>Login with Facebook
                     </button>
                 )} 
+            
+                cookiePolicy={'single_host_origin'}
+
             />
         </div>
     );

@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import styled from "styled-components"
 import Google from './google';
 import Facebook from './facebook';
-
+import Naver from './Naver';
 
 
 const Login = ({history}) => {
@@ -124,6 +124,7 @@ const Login = ({history}) => {
                 {loginForm()}
                 <Google informParent={informParent}/>
                 <Facebook informParent={informParent}/>
+                <Naver informParent={informParent}/>
                 <br />  
                     회원가입이 되어있지 않다면?
                         <Link to="/register" className="btn btn-sm btn-outline-danger">
