@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button, Container } from 'reactstrap';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import {getCookie} from '../auth/helper';
 
-const Container = styled.div`
+const container = styled.div`
     width: 80%;
     alignItems: center;
     justify-content: center;
@@ -22,11 +23,12 @@ class main extends Component {
         this.state = {};
     }
 
-    
-
-
     componentDidMount() {
         this.getData();
+    }
+    
+    moveScreen = history => {
+        history.push('/posting')
     }
 
     getData(){
@@ -48,7 +50,6 @@ class main extends Component {
                 console.log('Error is..', err)
 
             });
-
 
         // axios({
         //     method: 'GET',
@@ -75,7 +76,7 @@ class main extends Component {
 
     render() {
         return (
-            <Container>
+            <container>
                 <Table>
                     <thead>
                         <tr>
@@ -100,13 +101,17 @@ class main extends Component {
                         </tr>
                         <tr>
                             <th scope="row">3</th>
-                            <td>Larry</td>
+                            <td>{}</td>
                             <td>the Bird</td>
                             <td>@twitter</td>
                         </tr>
                     </tbody>
                 </Table>
-            </Container>
+                <Link to="/posting"><Button color="primary">글쓰기</Button>{' '}</Link>
+                
+            </container>
+
+            
         );
     }
 }
