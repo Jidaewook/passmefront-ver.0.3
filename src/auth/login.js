@@ -9,7 +9,7 @@ import styled from "styled-components"
 import Google from './google';
 import Facebook from './facebook';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-// import Naver from './Naver';
+
 
 
 const Login = ({history}) => {
@@ -22,7 +22,7 @@ const Login = ({history}) => {
 
     const informParent = response => {
         authenticate(response, () => {
-            isAuth() && isAuth.role === 'admin' ? history.push('/admin') : history.push('/private');
+            isAuth() && isAuth.role === 'admin' ? history.push('/admin') : history.push('/main');
         });
     };
 
@@ -50,7 +50,7 @@ const Login = ({history}) => {
                     setValues({...values, name: '', email: '', password: '', button: 'Submitted'});
                     toast.success(response.data.message);
                     console.log("enter");
-                    isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private');
+                    isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/main');
                 })
                 
             })
@@ -87,7 +87,6 @@ const Login = ({history}) => {
                 <div>
                     <div>
                         <input type="checkbox" aria-label="Checkbox for following text input" />자동으로 로그인하기
-                        <br/>??
                     </div>
                 </div>
             </div>
@@ -98,22 +97,12 @@ const Login = ({history}) => {
                 </button>
             </div>
             <span>소셜로그인</span>
-            <div>
-                <button className="d-flex justify-content-end social_icon">
-                    <span><i className="fab fa-twitter-square"></i></span>
-                </button>
-            </div>
 
-            <div>
-                <button className="d-flex justify-content-end social_icon">
-                    <span><i className="fab fa-naver-square"></i></span>
-                </button>
-            </div>
             
         </Form>
         
 
-
+ 
     );
 
     return (
@@ -125,7 +114,8 @@ const Login = ({history}) => {
                 {loginForm()}
                 <Google informParent={informParent}/>
                 <Facebook informParent={informParent}/>
-                {/* <Naver informParent={informParent}/> */}
+
+             
                 <br />  
                     회원가입이 되어있지 않다면?
                         <Link to="/register" className="btn btn-sm btn-outline-danger">
